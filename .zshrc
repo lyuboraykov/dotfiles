@@ -83,3 +83,7 @@ export PATH="/home/lraykov/.gvm/vertx/current/bin:/home/lraykov/.gvm/springboot/
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+#THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
+[[ -s "/home/lraykov/.gvm/bin/gvm-init.sh" ]] && source "/home/lraykov/.gvm/bin/gvm-init.sh"
+
