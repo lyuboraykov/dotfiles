@@ -10,19 +10,15 @@ ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[white]%})%{$fg[green]%}✔%{$reset_color%}"
 
 function _git_last_commit_summary() {
   # TODO: move the if from the both functions to a separate function
-  if git rev-parse --git-dir > /dev/null 2>&1; then
-    if [[ $(git log 2>&1 > /dev/null | grep -c "^fatal: bad default revision") == 0 ]]; then
-      local last_commit_message="$(git log -1 --oneline)"
+  if [ -d "./.git" ]; then 
+    local last_commit_message="$(git log -1 --oneline)"
       echo "${last_commit_message:0:30}... | "
-    fi
   fi  
   echo ''
 }
 
 function _git_time_since_commit() {
-  if git rev-parse --git-dir > /dev/null 2>&1; then
-    # Only proceed if there is actually a commit.
-    if [[ $(git log 2>&1 > /dev/null | grep -c "^fatal: bad default revision") == 0 ]]; then
+  if [ -d "./.git" ]; then
       # Get the last commit.
       last_commit=$(git log --pretty=format:'%at' -1 2> /dev/null)
       now=$(date +%s)
@@ -48,6 +44,5 @@ function _git_time_since_commit() {
       color=$ZSH_THEME_GIT_TIME_SINCE_COMMIT_NEUTRAL
       echo "$color$commit_age%{$reset_color%}"
     fi
-  fi
 }
 
