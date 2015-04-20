@@ -41,8 +41,8 @@ fi
 }
 
 encrypt_42() {
-  ENCRYPT_OUTPUT=$(openssl aes-256-cbc -in ~/42.plain -out ~/42.enc 2>&1)
-  if [[ $ENCRYPT_OUTPUT == *"bad password read"* ]]; then
+  local encryptOutput=$(openssl aes-256-cbc -in ~/42.plain -out ~/42.enc 2>&1)
+  if [[ $encryptOutput == *"bad password read"* ]]; then
     echo "The passwords don't match."
     rm -f ~/42.enc
   else
@@ -51,9 +51,9 @@ encrypt_42() {
 }
 
 decrypt_42() {
-  DECRYPT_OUTPUT=$(openssl aes-256-cbc -d -in ~/42.enc -out ~/42.plain 2>&1)
+  decryptOutput=$(openssl aes-256-cbc -d -in ~/42.enc -out ~/42.plain 2>&1)
   # Don't delete the encoded file if the password is wrong
-  if [[ $DECRYPT_OUTPUT == *"bad decrypt"* ]]; then
+  if [[ $decryptOutput == *"bad decrypt"* ]]; then
     echo "The decryption password is invalid."
     rm -f ~/42.plain
   else
