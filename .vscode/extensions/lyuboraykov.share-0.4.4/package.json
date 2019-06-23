@@ -1,0 +1,60 @@
+{
+	"name": "share",
+	"displayName": "Share",
+	"description": "Collaborative editing in vscode",
+	"version": "0.4.4",
+	"publisher": "lyuboraykov",
+	"icon": "images/vscode-share-icon.png",
+	"engines": {
+		"vscode": "^1.5.0"
+	},
+	"bugs": {
+		"url": "https://github.com/lyuboraykov/vscode-share/issues",
+		"email": "lyubo.raykov@gmail.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/lyuboraykov/vscode-share.git"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.openSession",
+		"onCommand:extension.connectToSession"
+	],
+	"main": "./out/src/extension",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.openSession",
+				"title": "Share: Open a new session"
+			},
+			{
+				"command": "extension.connectToSession",
+				"title": "Share: Connect to a session"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "tsc -p ./",
+		"compile": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^2.0.3",
+		"vscode": "^1.0.0",
+		"mocha": "^2.3.3",
+		"@types/node": "^6.0.40",
+		"@types/mocha": "^2.2.32"
+	},
+	"dependencies": {
+		"firebase": "^3.6.4"
+	},
+	"__metadata": {
+		"id": "af082183-1a59-49b1-98ee-15d8a812ab3e",
+		"publisherId": "6fff02d1-591a-4554-b7c7-a724b07fe79b",
+		"publisherDisplayName": "lyuboraykov"
+	}
+}

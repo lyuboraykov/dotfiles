@@ -1,0 +1,39 @@
+{
+	"name": "go",
+	"description": "Go Language Support for Visual Studio Code",
+	"version": "0.0.1",
+	"publisher": "TwentyChung",
+	"engines": {
+		"vscode": "^0.10.1"
+	},
+	"categories": [
+		"Languages"
+	],
+	"contributes": {
+		"languages": [
+			{
+				"id": "go",
+				"aliases": [
+					"Go",
+					"go"
+				],
+				"extensions": [
+					".go"
+				],
+				"configuration": "./go.configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "go",
+				"scopeName": "source.go",
+				"path": "./syntaxes/go.tmLanguage"
+			}
+		]
+	},
+	"__metadata": {
+		"id": "c50a9434-d450-466a-9e19-43f397970552",
+		"publisherId": "ebaa77e8-5f1e-4a48-9dda-2deacc9bd4db",
+		"publisherDisplayName": "TwentyChung"
+	}
+}

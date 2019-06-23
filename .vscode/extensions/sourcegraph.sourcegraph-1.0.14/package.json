@@ -1,0 +1,124 @@
+{
+	"name": "sourcegraph",
+	"displayName": "Sourcegraph",
+	"description": "Sourcegraph for VS Code",
+	"version": "1.0.14",
+	"publisher": "sourcegraph",
+	"license": "MIT",
+	"icon": "images/logo.png",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sourcegraph/sourcegraph-vscode.git"
+	},
+	"engines": {
+		"vscode": "^1.11.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.open",
+		"onCommand:extension.search"
+	],
+	"main": "./out/extension",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.open",
+				"title": "Sourcegraph: Open"
+			},
+			{
+				"command": "extension.search",
+				"title": "Sourcegraph: Search"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "extension.open",
+				"key": "alt+a",
+				"mac": "alt+a",
+				"when": "editorFocus"
+			},
+			{
+				"command": "extension.search",
+				"key": "alt+s",
+				"mac": "alt+s",
+				"when": "editorFocus"
+			}
+		],
+		"configuration": {
+			"type": "object",
+			"title": "Sourcegraph extension configuration",
+			"properties": {
+				"sourcegraph.url": {
+					"type": [
+						"string"
+					],
+					"default": "https://sourcegraph.com",
+					"description": "The base URL of the Sourcegraph instance to use."
+				}
+			}
+		}
+	},
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		]
+	},
+	"release": {
+		"verifyConditions": [
+			"semantic-release-vsce",
+			"@semantic-release/github"
+		],
+		"prepare": {
+			"path": "semantic-release-vsce",
+			"packageVsix": "sourcegraph-vscode.vsix"
+		},
+		"publish": [
+			"semantic-release-vsce",
+			{
+				"path": "@semantic-release/github",
+				"assets": "sourcegraph-vscode.vsix"
+			}
+		]
+	},
+	"scripts": {
+		"commitmsg": "commitlint -e $GIT_PARAMS",
+		"semantic-release": "semantic-release",
+		"prettier": "prettier \"**/*.{ts,js,json,md}\" --list-different --write",
+		"tslint": "tslint \"src/**.ts\" --project tsconfig.json --config tslint.json",
+		"build": "tsc -p .",
+		"watch": "tsc -w -p .",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^7.0.0",
+		"@commitlint/config-conventional": "^7.0.1",
+		"@sourcegraph/prettierrc": "^2.2.0",
+		"@sourcegraph/tsconfig": "^3.0.0",
+		"@sourcegraph/tslint-config": "^11.1.1",
+		"@types/execa": "^0.9.0",
+		"@types/mocha": "^2.2.32",
+		"@types/node": "^10.3.3",
+		"@types/opn": "^5.1.0",
+		"husky": "^0.14.3",
+		"mocha": "^5.2.0",
+		"prettier": "1.13.7",
+		"semantic-release": "^15.8.1",
+		"semantic-release-vsce": "^2.1.2",
+		"tslint": "^5.10.0",
+		"typescript": "^2.0.3",
+		"vsce": "^1.42.0",
+		"vscode": "^1.1.21"
+	},
+	"dependencies": {
+		"execa": "^0.6.3",
+		"opn": "^5.0.0"
+	},
+	"__metadata": {
+		"id": "6faf9533-e655-435d-8157-13d5e285d271",
+		"publisherId": "755cb281-9734-491c-866f-4facd1750385",
+		"publisherDisplayName": "Sourcegraph"
+	}
+}

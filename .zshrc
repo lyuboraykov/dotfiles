@@ -2,30 +2,31 @@
 export ZSH=$HOME/.oh-my-zsh
 
 #don't run if called from a login shell
-[ -z "$PS1" ] && return
+export GOPATH=$HOME/gocode
+export PATH=$PATH:/bin
+export PATH=$PATH:$GOPATH/bin
+export JAVA_HOME=$(/usr/libexec/java_home)
+export PATH=$(brew --prefix)/sbin:$(brew --prefix)/bin:$PATH:$HOME/bin:$GOPATH/bin
 
 echo "Don't panic!"
 
 ZSH_THEME="lraykov"
 
-plugins=(git common-aliases debian python)
+plugins=(git python)
+
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
 source $ZSH/oh-my-zsh.sh
 
-export PATH="/opt/stackato:/usr/lib/vm-jdk/bin:/usr/lib/maven/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/build/apps/bin"
-export BUILDAPPSROOT=/build/apps
-export BUILDAPPS=$BUILDAPPSROOT/bin
-export MAVEN_OPTS="-Xmx2048m -XX:MaxPermSize=512m"
-export JAVA_HOME="/usr/lib/vm-jdk"
-export TOMCAT='/opt/tomcat'
-export TCROOT='/build/toolchain'
+alias postgres="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
+alias uuid='python -c "import uuid; print uuid.uuid4()"'
+alias cerberus='cerberus --no-status-page'
 
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-
-alias jenkins="ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null root@vcac-jenkins"
-alias ack=ack-grep
-alias python=python3
+# Execute command in cerberus (i.e. like on adhoc)
+function crc() {
+    cerberus --run-command "$*"
+}
 
 # Check if I haven't forgotten to encrypt 42
 if [[ -f ~/42.plain ]]; then
@@ -60,3 +61,37 @@ decrypt_42() {
     rm -f ~/42.enc
   fi
 }
+
+# added by newengsetup
+export EDITOR=vim
+export UBER_HOME="$HOME/Uber"
+export UBER_OWNER="raykovl@uber.com"
+export UBER_LDAP_UID="raykovl"
+export VAGRANT_DEFAULT_PROVIDER=aws
+
+path+=(/Users/raykovl/bin)
+
+[ -s "/usr/local/bin/virtualenvwrapper.sh" ] && . /usr/local/bin/virtualenvwrapper.sh
+[ -s "$HOME/.nvm/nvm.sh" ] && . $HOME/.nvm/nvm.sh
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+cdsync () {
+    cd $(boxer sync_dir $@)
+}
+editsync () {
+    $EDITOR $(boxer sync_dir $@)
+}
+opensync () {
+    open $(boxer sync_dir $@)
+}
+
+
+free-port() { kill "$(lsof -t -i :$1)"; }
+
+kill-port() { kill -kill "$(lsof -t -i :$1)"; }
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

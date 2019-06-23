@@ -1,0 +1,259 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Avro",
+	"foldingStartMarker": "({|\\()\\s*$",
+	"foldingStopMarker": "(}|\\))\\s*$",
+	"patterns": [
+		{"include": "#comments"},
+		{"include": "#decorators"},
+		{"include": "#protocol"},
+		{"include": "#contents"}
+	],
+	"repository": {
+		"protocol": {
+			"patterns": [
+				{
+					"begin": "\\b(protocol)\\s+(\\w+)\\s*{",
+					"end": "}",
+					"beginCaptures": {
+						"1": {"name": "keyword.struct.avro"},
+						"2": {"name": "entity.name.type.avro"}
+					},
+					"patterns": [
+						{"include": "#record"},
+						{"include": "#contents"}
+					]
+				}
+			]
+		},
+		"contents": {
+			"patterns": [
+				{"include": "#record"},
+				{"include": "#declaration"},
+				{"include": "#comments"},
+				{"include": "#import"},
+				{"include": "#declaration"},
+				{"include": "#decorators"},
+				{"include": "#strings"},
+				{"include": "#union"},
+				{"include": "#collections"},
+				{"include": "#keywords"},
+				{"include": "#constants"}
+			]
+		},
+		"comments": {
+			"patterns": [
+				{
+					"begin": "//",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.avro"
+						}
+					},
+					"end": "$",
+					"name": "comment.line.double-slash.avro"
+				},
+				{
+					"name": "comment.block.avro",
+					"begin": "/\\*",
+					"end": "\\*/",
+					"captures": {"0": {"name": "punctuation.definition.comment.avro"}}
+				}
+			]
+		},
+		"decorators": {
+			"patterns": [
+				{
+					"begin": "^\\s*(@)(\\w+)\\s*\\(",
+					"end": "\\)",
+					"beginCaptures": {
+						"1": {"name":"keyword.avro"},
+						"2": {"name":"entity.name.tag.avro"}
+					},
+					"patterns": [{ "include": "#object"}]
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.struct.avro",
+					"match": "\\b(protocol|record)\\b"
+				},
+				{
+					"name": "keyword.control.avro",
+					"match": "(@namespace|@extends|@import)\\b"
+				},
+				{ "include": "#types" },
+				{
+					"name":"constant.language.avro",
+					"match": "\\b(true|false|null)\\b"
+				},
+				{
+					"name":"constant.language.abro",
+					"match": "\\b[A-Z][A-Z0-9_]*\\b"
+				}
+			]
+		},
+		"constants": {
+			"patterns": [
+				{
+					"name":"constant.language.avro",
+					"match": "\\b(true|false|null)\\b"
+				},
+				{
+					"name":"constant.language.avro",
+					"match": "\\b[A-Z][A-Z0-9_]*\\b"
+				},
+				{
+					"name":"constant.numeric.avro",
+					"match": "\\b[0-9]+(\\.[0-9]*)\\b"
+				}
+			]
+		},
+		"types": {
+			"patterns": [
+				{
+					"name": "storage.type.avro",
+					"match": "\\b(string|int|union|boolean|fixed|long|double|float|uint)\\b"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.avro",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.avro",
+					"match": "\\\\."
+				}
+			]
+		},
+		"import": {
+			"patterns": [
+				{
+					"match": "\\b(import)\\s+(idl|protocol|schema)\\s+([^;]+);",
+					"captures": {
+						"1": { "name": "keyword.avro"},
+						"2": { "name": "keyword.avro"},
+						"3": { "patterns": [{"include": "#strings"}]}
+					}
+				}
+			]
+		},
+		"declaration": {
+			"patterns": [
+				{
+					"begin": "\\b(enum|error)\\s+(\\w+)\\s*{",
+					"end": "}",
+					"beginCaptures": {
+						"1": { "name": "keyword.struct.avro" },
+						"2": { "name": "entity.name.type.avro" }
+					},
+					"patterns": [
+						{"include": "#contents"}
+					]
+				}
+			]
+		},
+		"record": {
+			"patterns": [
+				{
+					"begin": "\\b(record)\\s+(\\w*)\\s*{",
+					"end": "}",
+					"beginCaptures": {
+						"1": { "name": "keyword.struct.avro" },
+						"2": { "name": "entity.name.type.avro" }
+					},
+					"patterns": [
+						{"include": "#record"},
+						{"include": "#comments"},
+						{"include": "#decorators"},
+						{"include": "#field"}
+					]
+				}
+			]
+		},
+		"field": {
+			"patterns": [
+				{
+					"begin": "\\S+",
+					"end": "\\b(\\w+)\\s*(?:=\\s*(.*))?;",
+					"beginCaptures": {
+						"0": {"patterns": [
+							{"include": "#types"},
+							{"include": "#record"},
+							{"match": "\\w+", "name": "entity.name.type"}
+						]}
+					},
+					"endCaptures": {
+						"1": {"name":"variable.name"},
+						"2": {"patterns": [
+							{"include": "#strings"},
+							{"include": "#object"},
+							{"include": "#constants"}
+						]}
+					},
+					"patterns": [
+						{"include": "#decorators"},
+						{"include": "#comments"}
+					]
+				}
+			]
+		},
+		"union": {
+			"patterns": [
+				{
+					"begin": "\\b(union)\\s*{",
+					"end": "}",
+					"beginCaptures": {
+						"1": {"name":"keyword.struct.avro"}
+					},
+					"patterns": [
+						{"include": "#contents"}
+					]
+				}
+			]
+		},
+		"collections": {
+			"patterns": [
+				{
+					"begin": "\\b(array|map)\\s*<",
+					"end": ">",
+					"beginCaptures": {
+						"1": {"name":"storage.type.avro"}
+					},
+					"patterns": [
+						{"include": "#types"},
+						{"include": "#comments"},
+						{
+							"name": "entity.name.type",
+							"match": "\\w+"
+						}
+					]
+				}
+			]
+		},
+		"object": {
+			"patterns": [
+				{
+					"begin": "\\[",
+					"end": "\\]",
+					"patterns": [{ "include": "#object"}]
+				},
+				{
+					"begin": "{",
+					"end": "}",
+					"patterns": [
+						{"include": "#object"}
+					]
+				},
+				{"include": "#strings"},
+				{"include": "#constants"},
+				{"include": "#comments"}
+			]
+		}
+	},
+	"scopeName": "source.avro"
+}

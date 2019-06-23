@@ -1,0 +1,64 @@
+{
+	"name": "thrift-syntax-support",
+	"displayName": "Thrift Syntax Support",
+	"description": "thrift sytax support",
+	"version": "0.0.2",
+	"publisher": "mrkou47",
+	"icon": "images/logo.png",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/MrKou47/thrift-syntax-support.git"
+	},
+	"engines": {
+		"vscode": "^1.30.0"
+	},
+	"categories": [
+		"Programming Languages"
+	],
+	"activationEvents": [
+		"onLanguage:thrift"
+	],
+	"main": "./out/extension",
+	"contributes": {
+		"languages": [
+			{
+				"id": "thrift",
+				"extensions": [
+					".thrift"
+				]
+			}
+		],
+		"grammars": [
+			{
+				"language": "thrift",
+				"scopeName": "source.thrift",
+				"path": "./syntaxes/thrift.tmLanguage"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"update:tmfile": "curl https://raw.githubusercontent.com/textmate/thrift.tmbundle/master/Syntaxes/Thrift.tmLanguage -o ./syntaxes/Thrift.tmLanguage",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"@types/lodash": "^4.14.120",
+		"@types/mocha": "^2.2.42",
+		"@types/node": "^8.10.25",
+		"tslint": "^5.8.0",
+		"typescript": "^2.6.1",
+		"vscode": "^1.1.21"
+	},
+	"dependencies": {
+		"@creditkarma/thrift-parser": "^1.1.4",
+		"lodash": "^4.17.11"
+	},
+	"__metadata": {
+		"id": "f53e8d41-d56b-4fd5-813e-eee9384ede32",
+		"publisherId": "c406e036-85bf-41d1-a1e8-11c2baf663b6",
+		"publisherDisplayName": "mrkou47"
+	}
+}

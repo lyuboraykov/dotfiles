@@ -1,0 +1,43 @@
+{
+	"name": "theme-one-dark-vivid",
+	"displayName": "One Dark Vivid",
+	"description": "Atom's One Dark Vivid Theme for VS Code",
+	"version": "0.0.6",
+	"publisher": "kkozee",
+	"author": "Kevin Kozee",
+	"license": "MIT",
+	"engines": {
+		"vscode": "^1.10.0"
+	},
+	"categories": [
+		"Themes"
+	],
+	"icon": "icon.svg",
+	"contributes": {
+		"themes": [
+			{
+				"label": "One Dark Vivid",
+				"uiTheme": "vs-dark",
+				"path": "./themes/OneDarkVivid.json"
+			}
+		]
+	},
+	"bugs": {
+		"url": "https://github.com/kkozee/vscode-theme-one-dark-vivid/issues"
+	},
+	"homepage": "https://github.com/kkozee/vscode-theme-one-dark-vivid/blob/master/README.md",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/kkozee/vscode-theme-one-dark-vivid.git"
+	},
+	"keywords": [
+		"vscode",
+		"theme",
+		"one dark"
+	],
+	"__metadata": {
+		"id": "ac986b4b-90f6-4ca7-aecc-242851e554e7",
+		"publisherId": "b5dc55bf-a322-4295-be41-13b1c8e3bb93",
+		"publisherDisplayName": "Kevin Kozee"
+	}
+}

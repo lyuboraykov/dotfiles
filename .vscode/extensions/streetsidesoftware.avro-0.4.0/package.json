@@ -1,0 +1,60 @@
+{
+	"name": "avro",
+	"displayName": "avro-idl",
+	"description": "Avro IDL Syntax Highlighting",
+	"version": "0.4.0",
+	"publisher": "streetsidesoftware",
+	"engines": {
+		"vscode": "^1.14.0"
+	},
+	"categories": [
+		"Languages"
+	],
+	"qna": "marketplace",
+	"icon": "images/avro-logo.png",
+	"contributes": {
+		"languages": [
+			{
+				"id": "avro",
+				"aliases": [
+					"Avro",
+					"avro"
+				],
+				"extensions": [
+					".avdl"
+				],
+				"configuration": "./language-configuration.json"
+			},
+			{
+				"id": "jsonc",
+				"extensions": [
+					".avpr",
+					".avsc"
+				]
+			}
+		],
+		"grammars": [
+			{
+				"language": "avro",
+				"scopeName": "source.avro",
+				"path": "./node_modules/avro.tmlanguage/avro.tmLanguage.json"
+			}
+		]
+	},
+	"dependencies": {
+		"avro.tmlanguage": "^1.1.0"
+	},
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Jason3S/vscode-avro-ext"
+	},
+	"bugs": {
+		"url": "https://github.com/Jason3S/vscode-avro-ext/issues"
+	},
+	"__metadata": {
+		"id": "3af36832-3074-4848-bc8e-2adae9818ee2",
+		"publisherId": "67600ca7-88fb-4104-9f7e-dd51c00facf2",
+		"publisherDisplayName": "Street Side Software"
+	}
+}

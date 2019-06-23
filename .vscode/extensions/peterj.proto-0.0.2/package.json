@@ -1,0 +1,54 @@
+{
+	"name": "proto",
+	"displayName": "Protobuf support",
+	"description": "Protobuf support (.proto file syntax highlighting)",
+	"version": "0.0.2",
+	"publisher": "peterj",
+	"license": "SEE LICENSE IN LICENSE.md",
+	"icon": "images/protobuficon.svg",
+	"galleryBanner": {
+		"color": "#5c2d91",
+		"theme": "dark"
+	},
+	"homepage": "https://github.com/pj3677/vscode-protobuf/blob/master/README.md",
+	"bugs": {
+		"url": "https://github.com/pj3677/vscode-protobuf/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/pj3677/vscode-protobuf"
+	},
+	"engines": {
+		"vscode": "^0.10.1"
+	},
+	"categories": [
+		"Languages"
+	],
+	"contributes": {
+		"languages": [
+			{
+				"id": "proto",
+				"aliases": [
+					"Protocol Buffers",
+					"proto"
+				],
+				"extensions": [
+					".proto"
+				],
+				"configuration": "./proto.configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "proto",
+				"scopeName": "source.proto",
+				"path": "./syntaxes/proto.tmLanguage"
+			}
+		]
+	},
+	"__metadata": {
+		"id": "30bcbe00-bac0-497a-838a-eda8e45d1864",
+		"publisherId": "dde0e98a-1f51-4d1d-be41-4af4f134ca7e",
+		"publisherDisplayName": "peterj"
+	}
+}
