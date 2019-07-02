@@ -1,0 +1,37 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "editor.rulers": [
+        80
+    ],
+    "files.trimTrailingWhitespace": true,
+    "window.zoomLevel": 0,
+    "files.insertFinalNewline": true,
+    "files.exclude": {
+        "**/*.pyc": true,
+        "node_modules": true,
+        "env": true
+    },
+    "java.home": "/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home",
+    "zenMode.fullScreen": false,
+    "zenMode.hideTabs": false,
+    "workbench.iconTheme": "vscode-icons",
+    "[cpp]": {
+        "editor.quickSuggestions": false
+    },
+    "[c]": {
+        "editor.quickSuggestions": false
+    },
+    "terminal.integrated.shell.osx": "/bin/zsh",
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "rust.mode": "legacy",
+    "rust.rls": {
+        "executable": "rustup run nightly rls",
+        "useRustfmt": true
+    },
+    "rust.rustup": {
+        "toolchain": "stable-x86_64-apple-darwin",
+        "nightlyToolchain": "nightly-x86_64-apple-darwin"
+    },
+    "workbench.colorTheme": "One Dark Pro Vivid",
+    "python.jediEnabled": false
+}

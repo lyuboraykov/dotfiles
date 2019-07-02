@@ -1,0 +1,63 @@
+// Place your key bindings in this file to overwrite the defaults
+[{
+    "key": "ctrl+shift+l",
+    "command": "workbench.action.editor.changeLanguageMode",
+    "when": "editorTextFocus"
+},{
+    "key": "alt+-",
+    "command": "workbench.action.navigateBack",
+    "when": "editorTextFocus"
+},{
+    "key": "cmd+r",
+    "command": "workbench.action.gotoSymbol",
+    "when": "editorTextFocus"
+},{
+    "key": "alt+cmd+enter",
+    "command": "editor.action.goToDeclaration",
+    "when": "editorTextFocus"
+},{
+    "key": "ctrl+cmd+up",
+    "command": "editor.action.moveLinesUpAction",
+    "when": "editorTextFocus"
+},{
+    "key": "ctrl+cmd+down",
+    "command": "editor.action.moveLinesDownAction",
+    "when": "editorTextFocus"
+},{
+    "key": "alt+up",
+    "command": "cursorColumnSelectUp",
+    "when": "editorTextFocus"
+},{
+    "key": "cmd+y",
+    "command": "redo",
+    "when": "editorTextFocus"
+},{
+    "key": "ctrl+shift+k",
+    "command": "editor.action.deleteLines",
+    "when": "editorTextFocus"
+},{
+    "key": "alt+down",
+    "command": "cursorColumnSelectDown",
+    "when": "editorTextFocus"
+},{
+    "key": "shift+cmd+d",
+    "command": "editor.action.copyLinesDownAction",
+    "when": "editorTextFocus"
+},
+{
+    "key": "ctrl+1",
+    "command": "workbench.action.terminal.focusAtIndex1"
+},
+{
+    "key": "ctrl+2",
+    "command": "workbench.action.terminal.focusAtIndex2"
+},
+{
+    "key": "ctrl+[Backquote]",
+    "command": "workbench.action.terminal.toggleTerminal"
+},
+{
+    "key": "ctrl+=",
+    "command": "workbench.action.toggleMaximizedPanel"
+}
+]
